@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Course Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #000;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<h2>JavaScript Course Content</h2>
+
+<table id="courseTable">
+    <tr>
+        <th>Module</th>
+        <th>Content (Arabic)</th>
+        <th>Content (English)</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>مقدمة إلى JavaScript</td>
+        <td>Introduction to JavaScript</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>المتغيرات والأنواع</td>
+        <td>Variables and Data Types</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>الجمل الشرطية</td>
+        <td>Conditional Statements</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>الحلقات</td>
+        <td>Loops</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>الدوال</td>
+        <td>Functions</td>
+    </tr>
+</table>
+
+<button onclick="copyContent()">Copy Content</button>
+<button onclick="sendWhatsApp()">Send via WhatsApp</button>
+<button onclick="sendEmail()">Send by Email</button>
+<button onclick="pronounceContent()">Pronounce Content</button>
+<button onclick="showCurrentTime()">Current Time</button>
+<button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+<script>
+    function copyContent() {
+        const table = document.getElementById('courseTable').outerHTML;
+        navigator.clipboard.writeText(table).then(() => {
+            alert('Content copied to clipboard');
+        });
+    }
+
+    function sendWhatsApp() {
+        const text = encodeURIComponent(document.getElementById('courseTable').outerText);
+        window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+
+    function sendEmail() {
+        const subject = 'JavaScript Course Content';
+        const body = encodeURIComponent(document.getElementById('courseTable').outerText);
+        window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+    }
+
+    function pronounceContent() {
+        const text = document.getElementById('courseTable').outerText;
+        const utterance = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function showCurrentTime() {
+        alert('Current Time: ' + new Date().toLocaleString());
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+</script>
+
+</body>
+</html>
